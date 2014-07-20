@@ -2,9 +2,6 @@ import pandas as pd
 from pandas import DataFrame
 import os
 
-
-
-
 def sync_stock(stock_id):
     data_url  = 'http://xueqiu.com/S/' + stock_id + '/historical.csv'
     file_name = '../data/' + stock_id + '.csv'
