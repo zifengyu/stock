@@ -6,7 +6,7 @@ import time
 import os
 
 stock_base_dir = os.path.split(os.path.split(os.path.realpath(__file__))[0])[0]
-output_file = os.path.join(stock_base_dir, 'report', 'bond' + time.strftime('%Y%m%d',time.localtime(time.time())) + '.csv')
+output_file = os.path.join(stock_base_dir, 'report', 'bond', time.strftime('%Y%m%d',time.localtime(time.time())) + '.csv')
 
 bond_rate_criteria = ('AAA', 'AA+', 'AA')
 
@@ -51,11 +51,12 @@ for item in items:
                     rate, warrant, volume = info['rate'], info['warrant'], info['volume']
                     if rate in bond_rate_criteria and warrant in bond_rate_criteria:
                         count += 1
-                        bonds.append((str(code),roi,day,float(volume),str(rate),str(warrant),name))
+                        bonds.append((str(code),float(roi),day,float(volume),str(rate),str(warrant),name))
 
 bonds.sort(cmp=cmp, reverse=True)
+
 fout = open(output_file, 'w')
 for bond in bonds:
-    fout.write(str(bond).replace('(', '').replace(')', ''))
-fout.close()    
-print 'Done:', count
+    print bond
+    fout.write(str(bond).replace('(', '').replace(')', '') + '\n')
+fout.close()
