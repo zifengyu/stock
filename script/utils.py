@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 def read_stock_data(stock_id):
     file_name = '../data/' + stock_id + '.csv'
@@ -27,5 +28,5 @@ def cal_count(sd, func):
             ct += 1
     return ct
     
-
-            
+def get_data_path():
+    print os.path.join(os.path.split(os.path.realpath(__file__))[0], 'data')

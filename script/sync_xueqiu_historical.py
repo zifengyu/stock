@@ -2,9 +2,11 @@ import pandas as pd
 from pandas import DataFrame
 import os
 
+stock_base_dir = os.path.split(os.path.split(os.path.realpath(__file__))[0])[0]
+
 def sync_stock(stock_id):
-    data_url  = 'http://xueqiu.com/S/' + stock_id + '/historical.csv'
-    file_name = '../data/' + stock_id + '.csv'
+    data_url  = 'http://xueqiu.com/S/' + stock_id + '/historical.csv'    
+    file_name = os.path.join(stock_base_dir, 'data', stock_id + '.csv')
     
     #Download historical data from Xueqiu and keep necessary columns
     df = pd.read_csv(data_url)
@@ -20,7 +22,7 @@ def sync_stock(stock_id):
     for i in df2.index:
         r = df.ix[i]
         r2 = df2.ix[i]
-        if r['date'] != r2['date'] or abs(r['open'] - r2['open']) > 0.01 or abs(r['high'] - r2['high']) > 0.01       or abs(r['low'] - r2['low']) > 0.01        or abs(r['close'] - r2['close']) > 0.01 or abs(r['volume'] - r2['volume']) > 1:
+        if r['date'] != r2['date'] or abs(r['open'] - r2['open']) > 0.01 or abs(r['high'] - r2['high']) > 0.01       or abs(r['low'] - r2['low']) > 0.01 or abs(r['close'] - r2['close']) > 0.01 or abs(r['volume'] - r2['volume']) > 1:
             print stock_id, ',', i, ': Data is incorrect!'
             is_data_correct = False
             break
@@ -30,7 +32,7 @@ def sync_stock(stock_id):
         print stock_id, '... Completed'
         
 def main():
-    symbol_file = '../data/_symbols.txt'
+    symbol_file = os.path.join(stock_base_dir, 'data', '_symbols.txt')
     symbols = pd.read_csv(symbol_file, header=None)
     for i in symbols.index:
         row = symbols.ix[i]
