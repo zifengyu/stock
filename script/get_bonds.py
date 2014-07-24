@@ -43,15 +43,16 @@ for item in items:
             xueqiu_code = re.search('quote\.eastmoney\.com/(.*)\.html', item.select('li.name a')[0].attrs['href'], re.I)
             if xueqiu_code:
                 xueqiu_code = xueqiu_code.group(1).upper()
+                print '-->', xueqiu_code
                 resp = requests.get('http://xueqiu.com/S/' + xueqiu_code)
                 resp = requests.get('http://xueqiu.com/stock/quote.json?code=' + xueqiu_code, cookies = resp.cookies)                
                 info = resp.json()['quotes'][0]
                 name = info['name']
                 if name.find('PR') == -1:                                      
                     rate, warrant, volume = info['rate'], info['warrant'], info['volume']
-                    if rate in bond_rate_criteria and warrant in bond_rate_criteria:
+                    if rate in bond_rate_criteria and warrant in bond_rate_criteria:                    
                         count += 1
-                        bonds.append((str(code),float(roi),day,float(volume),str(rate),str(warrant),name))
+                        bonds.append((str(code),float(roi),int(day),float(volume),str(rate),str(warrant)))
 
 bonds.sort(cmp=cmp, reverse=True)
 
