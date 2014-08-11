@@ -19,7 +19,7 @@ def isNum(value):
         return True
         
 def cmp(x,y):
-    return int(float(x[1])-float(y[1]))
+    return int(float(x[7])-float(y[7]))
 
 
 resp = requests.get('http://bond.eastmoney.com/data/bonddata.html')
@@ -38,26 +38,34 @@ for item in items:
             continue
         processed.append(code)
         roi = item.select('li.pricev')[0].get_text()
-        day = item.select('li.priced')[0].get_text()      
-        price = item.select('li.price')[0].get_text()  
+        day = item.select('li.priced')[0].get_text()        
+        interests = item.select('li.price1')[0].get_text()    
         if isNum(roi) and float(roi) > 0 and isNum(day):        
             xueqiu_code = re.search('quote\.eastmoney\.com/(.*)\.html', item.select('li.name a')[0].attrs['href'], re.I)
             if xueqiu_code:
                 xueqiu_code = xueqiu_code.group(1).upper()
                 print '-->', xueqiu_code
-                resp = requests.get('http://xueqiu.com/S/' + xueqiu_code)
-                resp = requests.get('http://xueqiu.com/stock/quote.json?code=' + xueqiu_code, cookies = resp.cookies)                
+                while True:
+                    resp = requests.get('http://xueqiu.com/S/' + xueqiu_code)
+                    resp = requests.get('http://xueqiu.com/stock/quote.json?code=' + xueqiu_code, cookies = resp.cookies)                
+                    if resp.status_code == 200:
+                        break;
                 info = resp.json()['quotes'][0]
                 name = info['name']
+                open_price = float(info['open'])
+                high_price = float(info['high'])
+                low_price = float(info['low'])
+                close_price = float(info['current']) 
                 if name.find('PR') == -1:                                      
                     rate, warrant, volume = info['rate'], info['warrant'], info['volume']
                     if rate in bond_rate_criteria and warrant in bond_rate_criteria:                    
                         count += 1
-                        bonds.append((str(code),float(roi),int(day),float(price), float(volume),str(rate),str(warrant)))
+                        bonds.append((str(code), open_price, high_price, low_price, close_price, float(volume),float(interests), float(roi),int(day),str(rate),str(warrant)))
 
 bonds.sort(cmp=cmp, reverse=True)
 
 fout = open(output_file, 'w')
+fout.write('id,open,high,low,close,volume,interests,roi,day,rate,warrant\n')
 for bond in bonds:
     print bond
     fout.write(str(bond).replace('(', '').replace(')', '') + '\n')
