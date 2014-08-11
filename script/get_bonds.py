@@ -38,7 +38,8 @@ for item in items:
             continue
         processed.append(code)
         roi = item.select('li.pricev')[0].get_text()
-        day = item.select('li.priced')[0].get_text()        
+        day = item.select('li.priced')[0].get_text()      
+        price = item.select('li.price')[0].get_text()  
         if isNum(roi) and float(roi) > 0 and isNum(day):        
             xueqiu_code = re.search('quote\.eastmoney\.com/(.*)\.html', item.select('li.name a')[0].attrs['href'], re.I)
             if xueqiu_code:
@@ -52,7 +53,7 @@ for item in items:
                     rate, warrant, volume = info['rate'], info['warrant'], info['volume']
                     if rate in bond_rate_criteria and warrant in bond_rate_criteria:                    
                         count += 1
-                        bonds.append((str(code),float(roi),int(day),float(volume),str(rate),str(warrant)))
+                        bonds.append((str(code),float(roi),int(day),float(price), float(volume),str(rate),str(warrant)))
 
 bonds.sort(cmp=cmp, reverse=True)
 
