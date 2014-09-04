@@ -60,7 +60,7 @@ for item in items:
                     rate, warrant, volume = info['rate'], info['warrant'], info['volume']
                     if rate in bond_rate_criteria and warrant in bond_rate_criteria:                    
                         count += 1
-                        bonds.append((str(code), open_price, high_price, low_price, close_price, float(volume),float(interests), float(roi),int(day),str(rate),str(warrant)))
+                        bonds.append((str(code), open_price, high_price, low_price, close_price, float(volume),interests, float(roi),int(day),str(rate),str(warrant)))
 
 bonds.sort(cmp=cmp, reverse=True)
 
