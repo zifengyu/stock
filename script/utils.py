@@ -1,5 +1,9 @@
 import pandas as pd
 import os
+import sqlite3
+
+DIR_PATH = os.path.dirname(os.path.realpath(__file__))
+
 
 def read_stock_data(stock_id):
     file_name = '../data/' + stock_id + '.csv'
@@ -30,3 +34,14 @@ def cal_count(sd, func):
     
 def get_data_path():
     print os.path.join(os.path.split(os.path.realpath(__file__))[0], 'data')
+    
+    
+def load_fund_holding():
+    DB_FILE = "stock.db"
+    TABLE_NAME = "fund_holdings"
+    
+    with sqlite3.connect(os.path.join(DIR_PATH, '..', DB_FILE)) as conn:
+        df = pd.read_sql_query("select * from {}".format(TABLE_NAME), conn)
+        
+    return df
+    
