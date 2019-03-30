@@ -36,6 +36,16 @@ def get_data_path():
     print os.path.join(os.path.split(os.path.realpath(__file__))[0], 'data')
     
     
+def load_fund():
+    DB_FILE = "stock.db"
+    TABLE_NAME = "funds"
+    
+    with sqlite3.connect(os.path.join(DIR_PATH, '..', DB_FILE)) as conn:
+        df = pd.read_sql_query("select * from {}".format(TABLE_NAME), conn)
+        
+    return df
+    
+    
 def load_fund_holding():
     DB_FILE = "stock.db"
     TABLE_NAME = "fund_holdings"
