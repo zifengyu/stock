@@ -12,18 +12,24 @@ IS_COL = {
     # "endDateRep": "报表截止日期",  
     "secShortName": "证券简称",   
     "tRevenue": "营业总收入",     
-    # "revenue": "营业收入",
+    "revenue": "营业收入",
     "TCogs": "营业总成本",
-    # "COGS": "营业成本",
-    # "NIncome": "净利润",
+    "COGS": "营业成本",
+    "NIncome": "净利润",
+    # "goingConcernNI": "持续经营净利润",
     "NIncomeAttrP": "归属于母公司所有者的净利润",
     "basicEPS": "基本每股收益",
     "dilutedEPS": "稀释每股收益",
 }
 
 # 名称	类型	描述
-# secID         str     证券内部ID
-# partyID   	int	机构内部ID
+# secID	str	证券内部ID
+# publishDate	str	发布日期
+# endDate	str	截止日期
+# endDateRep	str	报表截止日期
+# partyID	int	机构内部ID
+# ticker	str	股票代码
+# secShortName	str	证券简称
 # exchangeCD	str	通联编制的证券市场编码。例如，XSHG-上海证券交易所；XSHE-深圳证券交易所等。对应DataAPI.SysCodeGet.codeTypeID=10002。
 # actPubtime	str	实际披露时间
 # mergedFlag	str	合并类型。1-合并,2-母公司。对应DataAPI.SysCodeGet.codeTypeID=70003。
@@ -31,11 +37,15 @@ IS_COL = {
 # fiscalPeriod	str	会计期间
 # accoutingStandards	str	会计准则
 # currencyCD	str	货币代码。例如，USD-美元；CAD-加元等。对应DataAPI.SysCodeGet.codeTypeID=10004。
+# tRevenue	float	营业总收入
+# revenue	float	营业收入
 # intIncome	float	利息收入
 # intExp	float	利息支出
 # premEarned	float	已赚保费
 # commisIncome	float	手续费及佣金收入
 # commisExp	float	手续费及佣金支出
+# TCogs	float	营业总成本
+# COGS	float	营业成本
 # premRefund	float	退保金
 # NCompensPayout	float	赔付支出净额
 # reserInsurContr	float	提取保险合同准备金净额
@@ -58,14 +68,19 @@ IS_COL = {
 # NCADisploss	float	非流动资产处置损失
 # TProfit	float	利润总额
 # incomeTax	float	所得税费用
+# NIncome	float	净利润
 # goingConcernNI	float	持续经营净利润
 # quitConcernNI	float	终止经营净利润
+# NIncomeAttrP	float	归属于母公司所有者的净利润
 # minorityGain	float	少数股东损益
+# basicEPS	float	基本每股收益
+# dilutedEPS	float	稀释每股收益
 # othComprIncome	float	其他综合收益
 # TComprIncome	float	综合收益总额
 # comprIncAttrP	float	归属于母公司所有者的综合收益总额
 # comprIncAttrMS	float	归属于少数股东的综合收益总额
 # updateTime	str	更新时间
+
 def get_IS(ticker=None):
     """
     获取利润表
