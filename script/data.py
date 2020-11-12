@@ -1,4 +1,5 @@
 import os
+import sqlite3
 import pandas as pd
 
 # 合并利润表 (Point in time)
@@ -205,6 +206,25 @@ def get_market(ticker=None):
     data = data.rename(columns=MKT_COL)
     return data
 
+
+DB_FILE = os.path.join(os.path.dirname(__file__), '..', 'data', 'market.db')
+def get_market2(ticker):
+    if ticker.startswith('6'):
+        ticker = "sh." + ticker
+    else:
+        ticker = "sz." + ticker
+    conn = sqlite3.connect(DB_FILE)
+    # date	交易所行情日期	格式：YYYY-MM-DD
+    # code	证券代码	格式：sh.600000。sh：上海，sz：深圳
+    # close	今收盘价	精度：小数点后4位；单位：人民币元
+    # peTTM	滚动市盈率	精度：小数点后6位
+    results =[]
+    for r in conn.execute('SELECT code, date, close, peTTM from history_day where code="{}"'.format(ticker)):
+        results.append(r)    
+    conn.close()
+    df = pd.DataFrame(results, columns=["通用交易代码","交易日期","前复权","滚动市盈率"])
+    df['交易日期'] = pd.to_datetime(df['交易日期'])
+    return df
 
 BS_FOLDER = os.path.join(os.path.dirname(__file__), '..', 'data', 'bs')
 BS_FILE = os.path.join(BS_FOLDER, 'bs.csv.gz')
