@@ -1,144 +1,86 @@
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.gridspec import GridSpec
-from matplotlib.ticker import *
-from matplotlib.dates import DateFormatter, WeekdayLocator, HourLocator, DayLocator, MONDAY, MonthLocator
-from matplotlib.finance import candlestick_ohlc, date2num, datetime
+import plotly.graph_objects as go
+import talib
 
-ohlc_dict = {
-    'id': 'first',
-    'open': 'first',
-    'highest': 'max',
-    'lowest': 'min',
-    'close': 'last',
-    'turnoverValue': 'sum'
-}
 
-index_dict = {
-    'indexID': 'id',
-    'openIndex': 'open',
-    'highestIndex': 'highest',
-    'lowestIndex': 'lowest',
-    'closeIndex': 'close'
-}
+INCREASING_COLOR = '#FF0033'
+DECREASING_COLOR = '#00CC66'
 
-stock_dict = {
-    'secID': 'id',
-    'openPrice': 'open',
-    'highestPrice': 'highest',
-    'lowestPrice': 'lowest',
-    'closePrice': 'close'
-}
 
-def draw(data):    
-    chart_width = 0.5
-    fig = plt.figure()
-    
-    gs1 = GridSpec(4, 1)
-    ax1 = plt.subplot(gs1[:-1, :])
-    ax2 = plt.subplot(gs1[-1, :])
-    
-    #locator = MonthLocator(bymonth=range(1, 13, 3))
-    #formatter = DateFormatter('%Y-%m')
-    #ax1.xaxis.set_major_locator(locator)
-    ax1.xaxis.set_major_formatter(NullFormatter())
-    
-    #reax1.set_yscale('log')
-    #ax1.yaxis.set_major_locator(SymmetricalLogLocator(base=1.2, linthresh=1))
-    ax1.yaxis.set_minor_locator(NullLocator())
-    ax1.yaxis.set_major_formatter(ScalarFormatter())
-    ax1.set_ylabel('Price')
-    ax1.grid(True)
-    
-    quote = dataframe2quote(data)
-    candlestick_ohlc(ax1, quote, width=chart_width, colorup='#ff1717', colordown='#53c156')
+def draw(df, period, price_period, volume_period):
+    """
+    df: DataFrame has colunms: date, open, high, low, close, volume
+    """    
+    df['price_sma'] = talib.SMA(df.close, price_period)
+    df['volume_sma'] = talib.SMA(df.volume, volume_period)
+    if len(df) > period:
+        df = df.iloc[-period:]
 
-    
-    plt.bar(range(len(data)), data['turnoverValue'], width=chart_width)
-    ax2.set_ylabel('Volume')
-    #ax2.xaxis.set_major_locator(locator)
-    #ax2.xaxis.set_major_formatter(formatter)
-    ax2.yaxis.set_major_formatter(ScalarFormatter())
-    ax2.grid(True)
-    
-    plt.setp(plt.gca().get_xticklabels(), rotation=90, horizontalalignment='right')
+    # build complete timepline from start date to end date
+    dt_all = pd.date_range(start=df['date'].iloc[0],end=df['date'].iloc[-1])    
+    # retrieve the dates that ARE in the original datset
+    dt_obs = [d.strftime("%Y-%m-%d") for d in pd.to_datetime(df['date'])]    
+    # define dates with missing values
+    dt_breaks = [d for d in dt_all.strftime("%Y-%m-%d").tolist() if not d in dt_obs]
 
-    date_tickers=data.index
+    data = []
+    price_candlestick = {
+        'type': 'candlestick',
+        'x': df.date,
+        'open': df.open, 'high': df.high, 'low': df.low, 'close': df.close,
+        'yaxis': 'y2',
+        'increasing': {'line': {'color': INCREASING_COLOR}},
+        'decreasing': {'line': {'color': DECREASING_COLOR}}
+    }
+    data.append(price_candlestick)
     
-    def format_date(x,pos=None):
-        if x<0 or x>len(date_tickers)-1:
-            return ''
-        return date_tickers[int(x)].strftime("%Y-%m-%d")
-    
-    ax1.xaxis.set_major_locator(MultipleLocator(5))
-    ax2.xaxis.set_major_locator(MultipleLocator(5))
-    ax2.xaxis.set_major_formatter(FuncFormatter(format_date))    
-    
-    #ax2.xaxis.set_major_formatter(FuncFormatter(format_date))
-    #ax.set_xlabel(label)
-    fig.suptitle(data.iloc[0]['id'], fontsize=12)
-    
-def draw2(data):    
-    chart_width = 0.5
-    fig = plt.figure()
-    
-    gs1 = GridSpec(4, 1)
-    ax1 = plt.subplot(gs1[:-1, :])
-    ax2 = plt.subplot(gs1[-1, :])
-    
-    locator = MonthLocator(bymonth=range(1, 13, 3))
-    formatter = DateFormatter('%Y-%m')
-    ax1.xaxis.set_major_locator(locator)
-    #ax1.xaxis.set_major_formatter(NullFormatter())
-    
-    ax1.set_yscale('log')
-    ax1.yaxis.set_major_locator(SymmetricalLogLocator(base=1.2, linthresh=1))
-    ax1.yaxis.set_minor_locator(NullLocator())
-    ax1.yaxis.set_major_formatter(ScalarFormatter())
-    ax1.set_ylabel('Price')
-    ax1.grid(True)
-    
-    quote = dataframe2quote(data)
-    candlestick_ohlc(ax1, quote, width=chart_width, colorup='#ff1717', colordown='#53c156')
+    colors = [DECREASING_COLOR]
+    for i in range(1, len(df.close)):
+        if df.close.iloc[i] >= df.close.iloc[i-1]:
+            colors.append(INCREASING_COLOR)
+        else:
+            colors.append(DECREASING_COLOR)
+    volume_bar = {
+        'type': 'bar',
+        'x': df.date, 'y': df.volume, 
+        'yaxis': 'y',
+        'marker': {'color': colors}
+    }
+    data.append(volume_bar)
 
+    price_sma_line = {
+        'type': 'scatter',
+        'x': df.date, 'y': df.price_sma, 
+        'yaxis': 'y2',
+        'line': {'width': 1},
+        'marker': {'color': '#666'},
+        'hoverinfo': 'none'
+    }
+    data.append(price_sma_line)
     
-    plt.bar(data.index, data['turnoverValue'], width = 20)
-    ax2.set_ylabel('Volume')
-    ax2.xaxis.set_major_locator(locator)
-    ax2.xaxis.set_major_formatter(formatter)
-    ax2.yaxis.set_major_formatter(ScalarFormatter())
-    ax2.grid(True)
-    
-    plt.setp(plt.gca().get_xticklabels(), rotation=90, horizontalalignment='right')
-    fig.suptitle(data.iloc[0]['id'], fontsize=12)
-      
-    
-def dataframe2quote(data):
-    quote = []
-    for i in range(data.shape[0]):
-        d = data.iloc[i]
-        time = date2num(data.index[i])
-        quote.append((i, d.open, d.highest, d.lowest, d.close, d.turnoverValue))
-    return quote
-    
-def day2month(data):
-    data1 = data.resample('M', kind='period').apply(ohlc_dict)    
-    data1 = data1.set_index(data1.index.start_time)
-    return data1
-    
-def read_index_data(file_name):
-    data1 = pd.read_csv(file_name)
-    data1 = data1.set_index(pd.DatetimeIndex(data1['tradeDate']))
-    return data1.rename(columns=index_dict)
-    
-def read_stock_data(file_name):
-    data1 = pd.read_csv(file_name)
-    data1 = data1.set_index(pd.DatetimeIndex(data1['tradeDate']))
-    return data1.rename(columns=stock_dict)
+    volume_sma_line = {
+        'type': 'scatter',
+        'x': df.date, 'y': df.volume_sma, 
+        'yaxis': 'y',
+        'line': {'width': 1},
+        'marker': {'color': '#666'},
+        'hoverinfo': 'none'
+    }
+    data.append(volume_sma_line)
 
+    fig = {
+        'data': data,
+        'layout': {
+            'plot_bgcolor': 'rgb(250, 250, 250)',
+            'yaxis': {'domain': [0, 0.2], 'showticklabels': False},
+            'yaxis2': {'domain': [0.2, 1.0]},
+            'margin': {'t': 40, 'b': 40, 'l': 40, 'r': 40},
+            'height': 600
+        }
+    }
     
-if __name__ == '__main__':
-    data1 = pd.read_csv('data/000016ZICN.csv')
-    data1 = data1.set_index(pd.DatetimeIndex(data1['tradeDate']))
-
+    fig = go.Figure(fig)
+    fig.update_xaxes(rangebreaks=[dict(values=dt_breaks)])
+    fig.update(layout_xaxis_rangeslider_visible=False)
+    fig.update_layout(showlegend=False)
+    fig.show()

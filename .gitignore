@@ -215,4 +215,4 @@ pip-log.txt
 .mr.developer.cfg
 
 *.db
-.ipynb_checkpoints
+.ipynb_checkpoints/*
