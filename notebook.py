@@ -20,6 +20,6 @@ if __name__ == '__main__':
     
     for root, dirs, files in os.walk('notebook'):
         for name in files:
-            if name.endswith('.ipynb'):
+            if name.endswith('.ipynb') and not name == '模版.ipynb':
                 p = os.path.join(root, name)
                 update(tj, p)

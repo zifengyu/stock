@@ -352,21 +352,24 @@ def get_BS(ticker=None):
 
 
 def merge_data():
-    data = pd.read_csv(IS_FILE, dtype={'ticker': str}, compression='gzip')    
+    data = pd.read_csv(IS_FILE, dtype={'ticker': str}, compression='gzip')
     files = [f for f in os.listdir(IS_FOLDER) if f.endswith('.csv')]
     if len(files) > 0:
         for f in files:        
             data_file = os.path.join(IS_FOLDER, f)
-            data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)                
+            data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)
+        data = data.sort_values(by=['ticker', 'publishDate'], ascending=False)        
         data.drop_duplicates(subset=['ticker', 'publishDate', 'endDate', 'endDateRep', 'actPubtime'], keep='first', inplace=True)
         data.to_csv(IS_FILE, index=False, compression='gzip')
 
-    data = pd.read_csv(ISQ_FILE, dtype={'ticker': str}, compression='gzip')    
+    data = pd.DataFrame()
     files = [f for f in os.listdir(ISQ_FOLDER) if f.endswith('.csv')]
     if len(files) > 0:
-        for f in files:        
+        for f in files:            
             data_file = os.path.join(ISQ_FOLDER, f)
-            data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)                
+            data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)
+        data = data.append(pd.read_csv(ISQ_FILE, dtype={'ticker': str}, compression='gzip'))
+        data = data.sort_values(by=['ticker', 'endDate'], ascending=False)
         data.drop_duplicates(subset=['ticker', 'endDate'], keep='first', inplace=True)
         data.to_csv(ISQ_FILE, index=False, compression='gzip')
 
@@ -375,16 +378,17 @@ def merge_data():
     if len(files) > 0:
         for f in files:        
             data_file = os.path.join(BS_FOLDER, f)
-            data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)                
+            data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)
+        data = data.sort_values(by=['ticker', 'publishDate'], ascending=False)       
         data.drop_duplicates(subset=['ticker', 'publishDate', 'endDate', 'endDateRep', 'actPubtime'], keep='first', inplace=True)
         data.to_csv(BS_FILE, index=False, compression='gzip')
 
-    data = pd.DataFrame()
-    files = [f for f in os.listdir(MKT_FOLDER) if f.endswith('.csv')]
-    for f in files:        
-        data_file = os.path.join(MKT_FOLDER, f)
-        data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)                
-    data.drop_duplicates(subset=['ticker', 'tradeDate'], keep='first', inplace=True)
-    for t in data['ticker'].unique():
-        data_file = os.path.join(MKT_FOLDER, t+'.csv')
-        data[data['ticker'] == t].to_csv(data_file, index=False)
+    # data = pd.DataFrame()
+    # files = [f for f in os.listdir(MKT_FOLDER) if f.endswith('.csv')]
+    # for f in files:        
+    #     data_file = os.path.join(MKT_FOLDER, f)
+    #     data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)                
+    # data.drop_duplicates(subset=['ticker', 'tradeDate'], keep='first', inplace=True)
+    # for t in data['ticker'].unique():
+    #     data_file = os.path.join(MKT_FOLDER, t+'.csv')
+    #     data[data['ticker'] == t].to_csv(data_file, index=False)

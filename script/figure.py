@@ -7,7 +7,7 @@ INCREASING_COLOR = '#FF0033'
 DECREASING_COLOR = '#00CC66'
 
 
-def draw(df, period, price_period, volume_period):
+def draw(df, period, price_period, volume_period, remove_missing=False):
     """
     df: DataFrame has colunms: date, open, high, low, close, volume
     """    
@@ -80,7 +80,8 @@ def draw(df, period, price_period, volume_period):
     }
     
     fig = go.Figure(fig)
-    fig.update_xaxes(rangebreaks=[dict(values=dt_breaks)])
+    if remove_missing:
+        fig.update_xaxes(rangebreaks=[dict(values=dt_breaks)])
     fig.update(layout_xaxis_rangeslider_visible=False)
     fig.update_layout(showlegend=False)
     fig.show()
