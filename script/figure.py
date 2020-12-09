@@ -75,7 +75,7 @@ def draw(df, period, price_period, volume_period, remove_missing=False):
             'yaxis': {'domain': [0, 0.2], 'showticklabels': False},
             'yaxis2': {'domain': [0.2, 1.0]},
             'margin': {'t': 40, 'b': 40, 'l': 40, 'r': 40},
-            'height': 600
+            'height': 480
         }
     }
     
