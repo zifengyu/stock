@@ -8,5 +8,5 @@ def column_pct(df, periods):
         if df[col].dtype == 'float':
             df[col] = df[col].map('{:,.0f}'.format) + " (" + df_pct[col].astype(str).str.pad(5, side ='left') + "%)"
         else:
-            df[col] = df[col].map('{:,.0f}'.format) + " (" + df_pct[col].astype(str) + "%)"
+            df[col] = df[col].map('{:,.0f}'.format) + " (" + df_pct[col].astype(str).str.pad(5, side ='left') + "%)"
     return df
