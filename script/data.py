@@ -355,7 +355,8 @@ def merge_data():
     data = pd.read_csv(IS_FILE, dtype={'ticker': str}, compression='gzip')
     files = [f for f in os.listdir(IS_FOLDER) if f.endswith('.csv')]
     if len(files) > 0:
-        for f in files:        
+        for f in files:
+            print("process", f)
             data_file = os.path.join(IS_FOLDER, f)
             data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)
         data = data.sort_values(by=['ticker', 'publishDate'], ascending=False)        
@@ -365,7 +366,8 @@ def merge_data():
     data = pd.DataFrame()
     files = [f for f in os.listdir(ISQ_FOLDER) if f.endswith('.csv')]
     if len(files) > 0:
-        for f in files:            
+        for f in files:
+            print("process", f)  
             data_file = os.path.join(ISQ_FOLDER, f)
             data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)
         data = data.append(pd.read_csv(ISQ_FILE, dtype={'ticker': str}, compression='gzip'))
@@ -376,7 +378,8 @@ def merge_data():
     data = pd.read_csv(BS_FILE, dtype={'ticker': str}, compression='gzip')    
     files = [f for f in os.listdir(BS_FOLDER) if f.endswith('.csv')]
     if len(files) > 0:
-        for f in files:        
+        for f in files:
+            print("process", f) 
             data_file = os.path.join(BS_FOLDER, f)
             data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)
         data = data.sort_values(by=['ticker', 'publishDate'], ascending=False)       
