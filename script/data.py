@@ -230,10 +230,12 @@ BS_FOLDER = os.path.join(os.path.dirname(__file__), '..', 'data', 'bs')
 BS_FILE = os.path.join(BS_FOLDER, 'bs.csv.gz')
 BS_COL = {
     "ticker": "股票代码",
-    "endDate":	"截止日期",
+    "endDate": "截止日期",
     "AR": "应收账款",
     "inventories": "存货",
     "AP": "应付账款",
+    "cashCEquiv": "货币资金",
+    "TLiab": "负债合计",
 }
 # 名称	类型	描述
 # secID	str	证券内部ID
@@ -395,3 +397,4 @@ def merge_data():
     # for t in data['ticker'].unique():
     #     data_file = os.path.join(MKT_FOLDER, t+'.csv')
     #     data[data['ticker'] == t].to_csv(data_file, index=False)
+
