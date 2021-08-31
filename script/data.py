@@ -230,12 +230,17 @@ BS_FOLDER = os.path.join(os.path.dirname(__file__), '..', 'data', 'bs')
 BS_FILE = os.path.join(BS_FOLDER, 'bs.csv.gz')
 BS_COL = {
     "ticker": "股票代码",
-    "endDate": "截止日期",
-    "AR": "应收账款",
-    "inventories": "存货",
-    "AP": "应付账款",
+    "endDate": "截止日期",    
     "cashCEquiv": "货币资金",
-    "TLiab": "负债合计",
+    "inventories": "存货",
+    "AR": "应收账款",
+    "TCA": "流动资产合计",
+    "fixedAssets": "固定资产",
+    "TNCA": "非流动资产合计",
+    "TAssets": "资产总计",
+    "AP": "应付账款",    
+    "TLiab": "负债合计",    
+    "TShEquity": "所有者权益合计"
 }
 # 名称	类型	描述
 # secID	str	证券内部ID
