@@ -47,6 +47,7 @@ def get_profit_data(code):
         "netProfit": "净利润",
         "epsTTM": "每股收益",
         "pubDate": "发布日期",
+        "totalShare": "总股本",
     }
     profit_list = []
     fields = None

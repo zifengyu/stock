@@ -16,6 +16,7 @@ IS_COL = {
     "revenue": "营业收入",
     "TCogs": "营业总成本",
     "COGS": "营业成本",
+    "TProfit": "利润总额",
     "NIncome": "净利润",
     # "goingConcernNI": "持续经营净利润",
     "NIncomeAttrP": "归属于母公司所有者的净利润",
@@ -239,8 +240,9 @@ BS_COL = {
     "TNCA": "非流动资产合计",
     "TAssets": "资产总计",
     "AP": "应付账款",    
-    "TLiab": "负债合计",    
-    "TShEquity": "所有者权益合计"
+    "TLiab": "负债合计",  
+    "othEquityInstr": "其他权益工具",
+    "TShEquity": "所有者权益合计",
 }
 # 名称	类型	描述
 # secID	str	证券内部ID
@@ -402,4 +404,3 @@ def merge_data():
     # for t in data['ticker'].unique():
     #     data_file = os.path.join(MKT_FOLDER, t+'.csv')
     #     data[data['ticker'] == t].to_csv(data_file, index=False)
-
