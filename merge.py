@@ -3,7 +3,7 @@ import script.data as data
 
 data.merge_data()
 
-for folder in ['bs', 'is', 'isq']:
+for folder in ['bs', 'is', 'isq', 'cf']:
     for f in os.listdir('data/' + folder):
         if f.endswith('.csv'):
             print("remove: " + f)

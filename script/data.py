@@ -7,12 +7,12 @@ import pandas as pd
 IS_FOLDER = os.path.join(os.path.dirname(__file__), '..', 'data', 'is')
 IS_FILE = os.path.join(IS_FOLDER, 'is.csv.gz')
 IS_COL = {
-    "ticker": "股票代码",           
-    # "publishDate": "发布日期",     
-    "endDate": "截止日期",          
-    # "endDateRep": "报表截止日期",  
-    "secShortName": "证券简称",   
-    "tRevenue": "营业总收入",     
+    "ticker": "股票代码",
+    # "publishDate": "发布日期",
+    "endDate": "截止日期",
+    # "endDateRep": "报表截止日期",
+    "secShortName": "证券简称",
+    "tRevenue": "营业总收入",
     "revenue": "营业收入",
     "TCogs": "营业总成本",
     "COGS": "营业成本",
@@ -86,7 +86,7 @@ IS_COL = {
 def get_IS(ticker=None):
     """
     获取利润表
-    """   
+    """
     data = pd.read_csv(IS_FILE, dtype={'ticker': str}, compression='gzip')
     data.drop_duplicates(subset=['ticker', 'endDate'], keep='first', inplace=True)
     data = data[IS_COL.keys()]
@@ -101,10 +101,10 @@ def get_IS(ticker=None):
 ISQ_FOLDER = os.path.join(os.path.dirname(__file__), '..', 'data', 'isq')
 ISQ_FILE = os.path.join(ISQ_FOLDER, 'isq.csv.gz')
 ISQ_COL = {
-    "ticker": "股票代码",                 
-    "endDate": "截止日期",              
-    "secShortName": "证券简称",   
-    # "tRevenue": "营业总收入",     
+    "ticker": "股票代码",
+    "endDate": "截止日期",
+    "secShortName": "证券简称",
+    # "tRevenue": "营业总收入",
     "revenue": "营业收入",
     # "NIncome": "净利润",
     "NIncomeAttrP": "归属于母公司所有者的净利润",
@@ -152,7 +152,7 @@ ISQ_COL = {
 def get_ISQ(ticker=None):
     """
     获取季度利润表
-    """   
+    """
     data = pd.read_csv(ISQ_FILE, dtype={'ticker': str}, compression='gzip')
     data.drop_duplicates(subset=['ticker', 'endDate'], keep='first', inplace=True)
     data = data[ISQ_COL.keys()]
@@ -164,10 +164,10 @@ def get_ISQ(ticker=None):
 
 MKT_FOLDER = os.path.join(os.path.dirname(__file__), '..', 'data', 'market')
 # MKT_FILE = os.path.join(MKT_FOLDER, 'market.csv')
-MKT_COL = {           
+MKT_COL = {
     "ticker": "通用交易代码",
-    "tradeDate": "交易日期",                
-    "closePrice": "收盘价",     
+    "tradeDate": "交易日期",
+    "closePrice": "收盘价",
     "accumAdjFactor": "累积前复权因子",
     "PE": "滚动市盈率",
 }
@@ -196,13 +196,13 @@ MKT_COL = {
 # PB	float	市净率，总市值/归属于母公司所有者权益合计
 # isOpen	int	股票今日是否开盘标记：0-未开盘，1-交易日
 # vwap	float	VWAP，成交金额/成交量
-def get_market(ticker=None):    
+def get_market(ticker=None):
     if ticker is None:
         return None
 
-    f = os.path.join(MKT_FOLDER, ticker+'.csv')    
+    f = os.path.join(MKT_FOLDER, ticker+'.csv')
     data = pd.read_csv(f, dtype={'ticker': str})
-    data['tradeDate'] = pd.to_datetime(data['tradeDate'])    
+    data['tradeDate'] = pd.to_datetime(data['tradeDate'])
     data = data[MKT_COL.keys()]
     data = data.rename(columns=MKT_COL)
     return data
@@ -221,7 +221,7 @@ def get_market2(ticker):
     # peTTM	滚动市盈率	精度：小数点后6位
     results =[]
     for r in conn.execute('SELECT code, date, close, peTTM from history_day where code="{}"'.format(ticker)):
-        results.append(r)    
+        results.append(r)
     conn.close()
     df = pd.DataFrame(results, columns=["通用交易代码","交易日期","前复权","滚动市盈率"])
     df['交易日期'] = pd.to_datetime(df['交易日期'])
@@ -231,7 +231,7 @@ BS_FOLDER = os.path.join(os.path.dirname(__file__), '..', 'data', 'bs')
 BS_FILE = os.path.join(BS_FOLDER, 'bs.csv.gz')
 BS_COL = {
     "ticker": "股票代码",
-    "endDate": "截止日期",    
+    "endDate": "截止日期",
     "cashCEquiv": "货币资金",
     "inventories": "存货",
     "AR": "应收账款",
@@ -239,8 +239,8 @@ BS_COL = {
     "fixedAssets": "固定资产",
     "TNCA": "非流动资产合计",
     "TAssets": "资产总计",
-    "AP": "应付账款",    
-    "TLiab": "负债合计",  
+    "AP": "应付账款",
+    "TLiab": "负债合计",
     "othEquityInstr": "其他权益工具",
     "TShEquity": "所有者权益合计",
 }
@@ -350,11 +350,111 @@ BS_COL = {
 def get_BS(ticker=None):
     """
     获取资产负债表
-    """   
+    """
     data = pd.read_csv(BS_FILE, dtype={'ticker': str}, compression='gzip')
     data.drop_duplicates(subset=['ticker', 'endDate'], keep='first', inplace=True)
     data = data[BS_COL.keys()]
     data = data.rename(columns=BS_COL)
+    if ticker:
+        data = data[data['股票代码'] == ticker].copy()
+    return data
+
+
+CF_FOLDER = os.path.join(os.path.dirname(__file__), '..', 'data', 'cf')
+CF_FILE = os.path.join(CF_FOLDER, 'cf.csv.gz')
+CF_COL = {
+    "ticker": "股票代码",
+    "endDate": "截止日期",
+    "CInfFrOperateA": "经营活动现金流入小计",
+    "COutfOperateA": "经营活动现金流出小计",
+    "NCFOperateA": "经营活动产生的现金流量净额",
+    "CInfFrInvestA": "投资活动现金流入小计",
+    "COutfFrInvestA": "投资活动现金流出小计",
+    "NCFFrInvestA": "投资活动产生的现金流量净额",
+    "CInfFrFinanA": "筹资活动现金流入小计",
+    "COutfFrFinanA": "筹资活动现金流出小计",
+    "NCFFrFinanA": "筹资活动产生的现金流量净额",
+    "NChangeInCash": "现金及现金等价物净增加额",
+}
+
+# 名称	类型	描述
+# secID	str	证券内部ID
+# publishDate	str	发布日期
+# endDate	str	截止日期
+# endDateRep	str	报表截止日期
+# partyID	int	机构内部ID
+# ticker	str	股票代码
+# secShortName	str	证券简称
+# exchangeCD	str	通联编制的证券市场编码。例如，XSHG-上海证券交易所；XSHE-深圳证券交易所等。对应DataAPI.SysCodeGet.codeTypeID=10002。
+# actPubtime	str	实际披露时间
+# mergedFlag	str	合并类型。1-合并,2-母公司。对应DataAPI.SysCodeGet.codeTypeID=70003。
+# reportType	str	报告类型。Q1-第一季报，S1-半年报，Q3-第三季报，CQ3-三季报（累计1-9月），A-年报。对应DataAPI.SysCodeGet.codeTypeID=70001。
+# fiscalPeriod	str	会计期间
+# accoutingStandards	str	会计准则
+# currencyCD	str	货币代码。例如，USD-美元；CAD-加元等。对应DataAPI.SysCodeGet.codeTypeID=10004。
+# CFrSaleGS	float	销售商品、提供劳务收到的现金
+# NDeposIncrCFI	float	客户存款和同业存放款项净增加额
+# NIncrBorrFrCB	float	向中央银行借款净增加额
+# NIncBorrOthFI	float	向其他金融机构拆入资金净增加额
+# premFrOrigContr	float	收到原保险合同保费取得的现金
+# NReinsurPrem	float	收到再保险业务现金净额
+# NIncPhDeposInv	float	保户储金及投资款净增加额
+# NIncDispTradFA	float	处置交易性金融资产净增加额
+# IFCCashIncr	float	收取利息、手续费及佣金的现金
+# NIncFrBorr	float	拆入资金净增加额
+# NCApIncrRepur	float	回购业务资金净增加额
+# refundOfTax	float	收到的税费返还
+# CFrOthOperateA	float	收到其他与经营活动有关的现金
+# CInfFrOperateA	float	经营活动现金流入小计
+# CPaidGS	float	购买商品、接受劳务支付的现金
+# NIncDisburOfLA	float	客户贷款及垫款净增加额
+# NIncrDeposInFI	float	存放中央银行和同业款项净增加额
+# origContrCIndem	float	支付原保险合同赔付款项的现金
+# CPaidIFC	float	支付利息、手续费及佣金的现金
+# CPaidPolDiv	float	支付保单红利的现金
+# CPaidToForEmpl	float	支付给职工以及为职工支付的现金
+# CPaidForTaxes	float	支付的各项税费
+# CPaidForOthOpA	float	支付其他与经营活动有关的现金
+# COutfOperateA	float	经营活动现金流出小计
+# NCFOperateA	float	经营活动产生的现金流量净额
+# procSellInvest	float	收回投资收到的现金
+# gainInvest	float	取得投资收益收到的现金
+# dispFixAssetsOth	float	处置固定资产、无形资产和其他长期资产收回的现金净额
+# NDispSubsOthBizC	float	处置子公司及其他营业单位收到的现金净额
+# CFrOthInvestA	float	收到其他与投资活动有关的现金
+# CInfFrInvestA	float	投资活动现金流入小计
+# purFixAssetsOth	float	购建固定资产、无形资产和其他长期资产支付的现金
+# CPaidInvest	float	投资支付的现金
+# NIncrPledgeLoan	float	质押贷款净增加额
+# NCPaidAcquis	float	取得子公司及其他营业单位支付的现金净额
+# CPaidOthInvestA	float	支付其他与投资活动有关的现金
+# COutfFrInvestA	float	投资活动现金流出小计
+# NCFFrInvestA	float	投资活动产生的现金流量净额
+# CFrCapContr	float	吸收投资收到的现金
+# CFrMinoSSubs	float	其中:子公司吸收少数股东投资收到的现金
+# CFrBorr	float	取得借款收到的现金
+# CFrIssueBond	float	发行债券收到的现金
+# CFrOthFinanA	float	收到其他与筹资活动有关的现金
+# CInfFrFinanA	float	筹资活动现金流入小计
+# CPaidForDebts	float	偿还债务支付的现金
+# CPaidDivProfInt	float	分配股利、利润或偿付利息支付的现金
+# divProfSubsMinoS	float	其中:子公司支付给少数股东的股利、利润
+# CPaidOthFinanA	float	支付其他与筹资活动有关的现金
+# COutfFrFinanA	float	筹资活动现金流出小计
+# NCFFrFinanA	float	筹资活动产生的现金流量净额
+# forexEffects	float	汇率变动对现金及现金等价物的影响
+# NChangeInCash	float	现金及现金等价物净增加额
+# NCEBegBal	float	加:期初现金及现金等价物余额
+# NCEEndBal	float	期末现金及现金等价物余额
+# updateTime	str	更新时间
+def get_CF(ticker=None):
+    """
+    获取现金流量表
+    """
+    data = pd.read_csv(CF_FILE, dtype={'ticker': str}, compression='gzip')
+    data.drop_duplicates(subset=['ticker', 'endDate'], keep='first', inplace=True)
+    data = data[CF_COL.keys()]
+    data = data.rename(columns=CF_COL)
     if ticker:
         data = data[data['股票代码'] == ticker].copy()
     return data
@@ -368,7 +468,7 @@ def merge_data():
             print("process", f)
             data_file = os.path.join(IS_FOLDER, f)
             data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)
-        data = data.sort_values(by=['ticker', 'publishDate'], ascending=False)        
+        data = data.sort_values(by=['ticker', 'publishDate'], ascending=False)
         data.drop_duplicates(subset=['ticker', 'publishDate', 'endDate', 'endDateRep', 'actPubtime'], keep='first', inplace=True)
         data.to_csv(IS_FILE, index=False, compression='gzip')
 
@@ -376,7 +476,7 @@ def merge_data():
     files = [f for f in os.listdir(ISQ_FOLDER) if f.endswith('.csv')]
     if len(files) > 0:
         for f in files:
-            print("process", f)  
+            print("process", f)
             data_file = os.path.join(ISQ_FOLDER, f)
             data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)
         data = data.append(pd.read_csv(ISQ_FILE, dtype={'ticker': str}, compression='gzip'))
@@ -384,22 +484,22 @@ def merge_data():
         data.drop_duplicates(subset=['ticker', 'endDate'], keep='first', inplace=True)
         data.to_csv(ISQ_FILE, index=False, compression='gzip')
 
-    data = pd.read_csv(BS_FILE, dtype={'ticker': str}, compression='gzip')    
+    data = pd.read_csv(BS_FILE, dtype={'ticker': str}, compression='gzip')
     files = [f for f in os.listdir(BS_FOLDER) if f.endswith('.csv')]
     if len(files) > 0:
         for f in files:
-            print("process", f) 
+            print("process", f)
             data_file = os.path.join(BS_FOLDER, f)
             data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)
-        data = data.sort_values(by=['ticker', 'publishDate'], ascending=False)       
+        data = data.sort_values(by=['ticker', 'publishDate'], ascending=False)
         data.drop_duplicates(subset=['ticker', 'publishDate', 'endDate', 'endDateRep', 'actPubtime'], keep='first', inplace=True)
         data.to_csv(BS_FILE, index=False, compression='gzip')
 
     # data = pd.DataFrame()
     # files = [f for f in os.listdir(MKT_FOLDER) if f.endswith('.csv')]
-    # for f in files:        
+    # for f in files:
     #     data_file = os.path.join(MKT_FOLDER, f)
-    #     data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)                
+    #     data = data.append(pd.read_csv(data_file, dtype={'ticker': str}), ignore_index=True)
     # data.drop_duplicates(subset=['ticker', 'tradeDate'], keep='first', inplace=True)
     # for t in data['ticker'].unique():
     #     data_file = os.path.join(MKT_FOLDER, t+'.csv')
