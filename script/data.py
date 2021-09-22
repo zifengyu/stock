@@ -369,6 +369,7 @@ CF_COL = {
     "COutfOperateA": "经营活动现金流出小计",
     "NCFOperateA": "经营活动产生的现金流量净额",
     "CInfFrInvestA": "投资活动现金流入小计",
+    "purFixAssetsOth": "购建固定资产、无形资产和其他长期资产支付的现金",
     "COutfFrInvestA": "投资活动现金流出小计",
     "NCFFrInvestA": "投资活动产生的现金流量净额",
     "CInfFrFinanA": "筹资活动现金流入小计",
