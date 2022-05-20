@@ -461,6 +461,26 @@ def get_CF(ticker=None):
     return data
 
 
+DIV_FOLDER = os.path.join(os.path.dirname(__file__), '..', 'data', 'div')
+DIV_FILE = os.path.join(DIV_FOLDER, 'div.csv.gz')
+DIV_COL = {
+    "ticker": "股票代码",
+    "endDate": "截止日期",
+    "cashDiv": "分红",
+}
+def get_DIV(ticker=None):
+    """
+    获取分红
+    """
+    data = pd.read_csv(DIV_FILE, dtype={'ticker': str}, compression='gzip')
+    data.drop_duplicates(subset=['ticker', 'endDate'], keep='first', inplace=True)
+    data = data[DIV_COL.keys()]
+    data = data.rename(columns=DIV_COL)
+    if ticker:
+        data = data[data['股票代码'] == ticker].copy()
+    return data
+
+
 def merge_data():
     data = pd.read_csv(IS_FILE, dtype={'ticker': str}, compression='gzip')
     files = [f for f in os.listdir(IS_FOLDER) if f.endswith('.csv')]
