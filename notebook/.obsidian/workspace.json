@@ -1,0 +1,171 @@
+{
+  "main": {
+    "id": "1ba2fd36a772b19d",
+    "type": "split",
+    "children": [
+      {
+        "id": "006df418a539f4a9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "72bc084c81776189",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "600585 海螺水泥/600585 海螺水泥.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "45e284bbbe6d4d65",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "600585 海螺水泥/2022年年度报告.pdf"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a1faea5d346d5fab",
+    "type": "split",
+    "children": [
+      {
+        "id": "8b225d2d87622ae3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5a6d0ec89c4e9caa",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "b76d0f1762f5b2d7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "7a0d739da4164389",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "9712bdef516d8a83",
+    "type": "split",
+    "children": [
+      {
+        "id": "648a171635fb55f2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d90afc97fbb63632",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "600585 海螺水泥/2022年年度报告.pdf",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9f2423e325c49fc3",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "600585 海螺水泥/2022年年度报告.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "14b83560b2a54e95",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "5ba180a4a11d33d3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "600585 海螺水泥/2022年年度报告.pdf"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "45e284bbbe6d4d65",
+  "lastOpenFiles": [
+    "600585 海螺水泥/600585 海螺水泥.md",
+    "600585 海螺水泥/2022年年度报告.pdf",
+    "Users/yuzifeng/GitHub/stock/notebook/600585.md",
+    "Users/yuzifeng/GitHub/stock/notebook",
+    "Users/yuzifeng/GitHub/stock",
+    "Users/yuzifeng/GitHub",
+    "Users/yuzifeng",
+    "Users"
+  ]
+}
