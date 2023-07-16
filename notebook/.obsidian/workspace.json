@@ -4,33 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "006df418a539f4a9",
+        "id": "7633e82318f4c454",
         "type": "tabs",
         "children": [
           {
-            "id": "72bc084c81776189",
+            "id": "d3b0994424e7d2d4",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "600585 海螺水泥/600585 海螺水泥.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "45e284bbbe6d4d65",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "600585 海螺水泥/2022年年度报告.pdf"
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -80,7 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 340.5
   },
   "right": {
     "id": "9712bdef516d8a83",
@@ -96,7 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "600585 海螺水泥/2022年年度报告.pdf",
+                "file": "600036 招商银行/600036 招商银行.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +98,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "600585 海螺水泥/2022年年度报告.pdf",
+                "file": "600036 招商银行/600036 招商银行.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,7 +121,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "600585 海螺水泥/2022年年度报告.pdf"
+                "file": "600036 招商银行/600036 招商银行.md"
               }
             }
           }
@@ -157,15 +142,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "45e284bbbe6d4d65",
+  "active": "5a6d0ec89c4e9caa",
   "lastOpenFiles": [
+    "600036 招商银行/招商银行股份有限公司2022年度报告.pdf",
+    "600036 招商银行/600036 招商银行.md",
+    "600036 招商银行/2012.pdf",
+    "600036 招商银行/2013.pdf",
+    "600036 招商银行/2014.pdf",
+    "600036 招商银行/2015.pdf",
+    "600036 招商银行/2016.pdf",
+    "600036 招商银行/2017.pdf",
+    "600036 招商银行/2018.pdf",
+    "600036 招商银行/2019.pdf",
+    "600036 招商银行/2012年年度报告.pdf",
+    "600036 招商银行/2013年年度报告.pdf",
     "600585 海螺水泥/600585 海螺水泥.md",
-    "600585 海螺水泥/2022年年度报告.pdf",
-    "Users/yuzifeng/GitHub/stock/notebook/600585.md",
-    "Users/yuzifeng/GitHub/stock/notebook",
-    "Users/yuzifeng/GitHub/stock",
-    "Users/yuzifeng/GitHub",
-    "Users/yuzifeng",
-    "Users"
+    "Users/yuzifeng/GitHub/stock/notebook/600585.md"
   ]
 }
