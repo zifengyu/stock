@@ -47,7 +47,7 @@ def download_annual_reports(code):
         print('Nothing to download')
         return
     
-    sec_name = announcements[0]['secName']
+    sec_name = announcements[0]['secName'].replace(' ', '')
     path = os.path.join(path, '{} {}'.format(code, sec_name))
     if not os.path.exists(path):
         print("Create folder {}".format(path))
