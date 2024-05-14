@@ -4,56 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "ded0c6c61b0113ae",
+        "id": "f572e4ee6b3eb09c",
         "type": "tabs",
         "children": [
           {
-            "id": "709e44e7e924a7f7",
+            "id": "02421d55bab3f8f6",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "000538 云南白药/2022年年度报告.pdf"
-              }
-            }
-          },
-          {
-            "id": "7e9a44d5005dbcf7",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "000538 云南白药/2020年年度报告.pdf"
-              }
-            }
-          },
-          {
-            "id": "92da773c4a56ac3d",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "000538 云南白药/2021年年度报告.pdf"
-              }
-            }
-          },
-          {
-            "id": "458814e5e709a86a",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "000538 云南白药/2018年年度报告.pdf"
-              }
-            }
-          },
-          {
-            "id": "2cd8180d66b1a8e4",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "000538 云南白药/2019年年度报告.pdf"
+                "file": "Diary 2024-05.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -123,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "000538 云南白药/2022年年度报告.pdf",
+                "file": "Diary 2024-05.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -140,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "000538 云南白药/2022年年度报告.pdf",
+                "file": "Diary 2024-05.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -163,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "000538 云南白药/2022年年度报告.pdf"
+                "file": "Diary 2024-05.md"
               }
             }
           }
@@ -184,19 +146,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "709e44e7e924a7f7",
+  "active": "02421d55bab3f8f6",
   "lastOpenFiles": [
+    "600585 海螺水泥/2023年度报告.pdf",
+    "600585 海螺水泥/600585 海螺水泥.md",
+    "600585 海螺水泥/2022年年度报告.pdf",
+    "600585 海螺水泥/2019年年度报告.pdf",
+    "Diary 2024-05.md",
     "000538 云南白药/2019年年度报告.pdf",
-    "000538 云南白药/2020年年度报告.pdf",
     "000538 云南白药/2018年年度报告.pdf",
     "000538 云南白药/2021年年度报告.pdf",
+    "000538 云南白药/2020年年度报告.pdf",
     "000538 云南白药/2022年年度报告.pdf",
     "000538 云南白药/2011年年度报告.pdf",
     "000538 云南白药/2012年年度报告.pdf",
-    "000538 云南白药/2013年年度报告.pdf",
-    "000538 云南白药/2014年年度报告.pdf",
-    "000538 云南白药/2015年年度报告.pdf",
-    "000538 云南白药/2016年年度报告.pdf",
     "002572 索菲亚/002572 索菲亚.md",
     "603866 桃李面包/603866 桃李面包.md",
     "2023-08-13.md",
@@ -204,14 +167,12 @@
     "603288 海天味业/603288 海天味业.md",
     "002597 金禾实业/002597 金禾实业.md",
     "600600 青岛啤酒/600600 青岛啤酒.md",
-    "Untitled.md",
     "600132 重庆啤酒/600132 重庆啤酒.md",
     "600809 山西汾酒/600809 山西汾酒.md",
     "002304 洋河股份/002304 洋河股份.md",
     "600519 贵州茅台/600519 贵州茅台.md",
     "000858 五粮液/000858 五粮液.md",
     "600036 招商银行/600036 招商银行.md",
-    "600585 海螺水泥/600585 海螺水泥.md",
     "Users/yuzifeng/GitHub/stock/notebook/600585.md"
   ]
 }
