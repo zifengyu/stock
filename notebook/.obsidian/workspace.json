@@ -4,11 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "f572e4ee6b3eb09c",
+        "id": "b1a3e648cdb3a026",
         "type": "tabs",
         "children": [
           {
-            "id": "02421d55bab3f8f6",
+            "id": "fca117b45c1dd119",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "600519 贵州茅台/贵州茅台2023年年度报告.pdf"
+              }
+            }
+          },
+          {
+            "id": "ec9b087d3eb12d62",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -85,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Diary 2024-05.md",
+                "file": "600519 贵州茅台/贵州茅台2023年年度报告.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +112,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Diary 2024-05.md",
+                "file": "600519 贵州茅台/贵州茅台2023年年度报告.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Diary 2024-05.md"
+                "file": "600519 贵州茅台/贵州茅台2023年年度报告.pdf"
               }
             }
           }
@@ -146,20 +156,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "02421d55bab3f8f6",
+  "active": "fca117b45c1dd119",
   "lastOpenFiles": [
+    "Diary 2024-05.md",
+    "600519 贵州茅台/贵州茅台2023年年度报告.pdf",
+    "600519 贵州茅台/600519 贵州茅台.md",
+    "600519 贵州茅台/贵州茅台2023年年度报告（英文版）.pdf",
+    "600036 招商银行/600036 招商银行.md",
+    "600036 招商银行/招商银行股份有限公司2023年度报告.pdf",
     "600585 海螺水泥/2023年度报告.pdf",
+    "600585 海螺水泥/2019年年度报告.pdf",
+    "600585 海螺水泥/2018年年度报告.pdf",
     "600585 海螺水泥/600585 海螺水泥.md",
     "600585 海螺水泥/2022年年度报告.pdf",
-    "600585 海螺水泥/2019年年度报告.pdf",
-    "Diary 2024-05.md",
     "000538 云南白药/2019年年度报告.pdf",
     "000538 云南白药/2018年年度报告.pdf",
     "000538 云南白药/2021年年度报告.pdf",
-    "000538 云南白药/2020年年度报告.pdf",
-    "000538 云南白药/2022年年度报告.pdf",
-    "000538 云南白药/2011年年度报告.pdf",
-    "000538 云南白药/2012年年度报告.pdf",
     "002572 索菲亚/002572 索菲亚.md",
     "603866 桃李面包/603866 桃李面包.md",
     "2023-08-13.md",
@@ -170,9 +182,7 @@
     "600132 重庆啤酒/600132 重庆啤酒.md",
     "600809 山西汾酒/600809 山西汾酒.md",
     "002304 洋河股份/002304 洋河股份.md",
-    "600519 贵州茅台/600519 贵州茅台.md",
     "000858 五粮液/000858 五粮液.md",
-    "600036 招商银行/600036 招商银行.md",
     "Users/yuzifeng/GitHub/stock/notebook/600585.md"
   ]
 }
