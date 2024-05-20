@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "36bd519d4bc2ffd6",
+        "id": "c04328a94a338bcc",
         "type": "tabs",
         "children": [
           {
-            "id": "80a059fb3ab9d715",
+            "id": "69240ecb3e6e8ce4",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -138,7 +138,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "80a059fb3ab9d715",
+  "active": "69240ecb3e6e8ce4",
   "lastOpenFiles": [
     "600597 光明乳业/光明乳业2023年年度报告.pdf",
     "Diary/2024-05.md",
