@@ -4,16 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "b1a3e648cdb3a026",
+        "id": "ff6405926dce04d6",
         "type": "tabs",
         "children": [
           {
-            "id": "fca117b45c1dd119",
+            "id": "6fc17fb399b33d11",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "600519 贵州茅台/贵州茅台2023年年度报告.pdf"
+                "file": "600887 伊利股份/600887 伊利股份.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -67,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 333.5
+    "width": 435.5
   },
   "right": {
     "id": "9712bdef516d8a83",
@@ -83,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Diary/2024-05.md",
+                "file": "600887 伊利股份/600887 伊利股份.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Diary/2024-05.md",
+                "file": "600887 伊利股份/600887 伊利股份.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Diary/2024-05.md"
+                "file": "600887 伊利股份/600887 伊利股份.md"
               }
             }
           }
@@ -144,24 +146,28 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5a6d0ec89c4e9caa",
+  "active": "6fc17fb399b33d11",
   "lastOpenFiles": [
+    "600887 伊利股份/2019.pdf",
+    "600887 伊利股份/600887 伊利股份.md",
+    "Diary/2024-05.md",
+    "002027 分众传媒/2021年年度报告.pdf",
+    "600887 伊利股份/内蒙古伊利实业集团股份有限公司2022年年度报告.pdf",
+    "600887 伊利股份/内蒙古伊利实业集团股份有限公司2023年年度报告.pdf",
+    "002027 分众传媒/002027 分众传媒.md",
+    "002027 分众传媒/Pasted image 20240519212316.png",
+    "002027 分众传媒/2023年年度报告.pdf",
+    "002027 分众传媒/2022年年度报告.pdf",
+    "002027 分众传媒/Pasted image 20240519211507.png",
+    "600519 贵州茅台/贵州茅台2023年年度报告.pdf",
     "Diary",
     "Pasted image 20240518233829.png",
-    "Diary/2024-05.md",
-    "600519 贵州茅台/贵州茅台2023年年度报告.pdf",
     "600519 贵州茅台/600519 贵州茅台.md",
     "600519 贵州茅台/贵州茅台2023年年度报告（英文版）.pdf",
     "600036 招商银行/600036 招商银行.md",
     "600036 招商银行/招商银行股份有限公司2023年度报告.pdf",
     "600585 海螺水泥/2023年度报告.pdf",
-    "600585 海螺水泥/2019年年度报告.pdf",
-    "600585 海螺水泥/2018年年度报告.pdf",
     "600585 海螺水泥/600585 海螺水泥.md",
-    "600585 海螺水泥/2022年年度报告.pdf",
-    "000538 云南白药/2019年年度报告.pdf",
-    "000538 云南白药/2018年年度报告.pdf",
-    "000538 云南白药/2021年年度报告.pdf",
     "002572 索菲亚/002572 索菲亚.md",
     "603866 桃李面包/603866 桃李面包.md",
     "2023-08-13.md",
